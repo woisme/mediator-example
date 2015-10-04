@@ -1,13 +1,3 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
@@ -55,11 +45,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
 
-
     </style>
 
-    <paper-material elevation="[[_computeElevation(active)]]"
-                    class="row layout horizontal center">
+    <paper-material class="row layout horizontal center">
 
       <!-- Note the use of $= for aria-labelledby. This is because there's
       no corresponding js property so we need to write a literal attribute
@@ -103,46 +91,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
-      // attached: function() {
-      //   // Delegate focus events with useCapture to figure out if one of our
-      //   // child elements is being focused or if we're about to blur
-      //   // All of this fanciness is for the sake of the raised paper effect
-      //   this.addEventListener('focus', this._activate.bind(this), true);
-      //   this.addEventListener('blur', this._deactivate.bind(this), true);
-      //   this.addEventListener('mouseenter', this._activate.bind(this));
-      //   this.addEventListener('mouseleave', this._deactivate.bind(this));
-      // },
-      //
-      // detached: function() {
-      //   this.removeEventListener('focus', this._activate.bind(this), true);
-      //   this.removeEventListener('blur', this._deactivate.bind(this), true);
-      //   this.removeEventListener('mouseenter', this._activate.bind(this));
-      //   this.removeEventListener('mouseleave', this._deactivate.bind(this));
-      // },
-      //
-      // _activate: function() {
-      //   this.active = true;
-      // },
-      //
-      // _deactivate: function() {
-      //   this.active = false;
-      // },
-      //
-      // _computeElevation: function(active) {
-      //   return active ? 2 : 0;
-      // },
-      //
       _computeLabelId: function(uid) {
         return 'cardItemLabel-' + uid;
       },
-
-      // If enter was pressed, unfocus the text input
-      // _checkConfirmation: function(e) {
-      //   if (e.keyCode === 13) {
-      //     e.preventDefault();
-      //     e.target.blur();
-      //   }
-      // },
 
       _onDelete: function() {
         this.fire('delete-card', {card: this.card});

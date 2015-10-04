@@ -1,0 +1,71 @@
+<link rel="import" href="../../bower_components/firebase-element/firebase-collection.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
+
+
+<dom-module id="card-data">
+
+  <template>
+
+    <style>
+
+
+    </style>
+
+
+    <firebase-collection location="{{location}}"
+                         ref="{{ref}}"
+                         data="{{fbCards}}"
+                         on-firebase-value="_firebaseLoaded"
+                         log>
+    </firebase-collection>
+
+    <!-- Backfill cards from localstorage. This prevents an initial flash while
+         we're waiting to hear from Firebase, and it lets the user see their
+         old cards if they start the app offline.
+         This SHOULD NOT write to Firebase. If the user has cleared their
+         localstorage, it should not nullify everything saved in Firebase. -->
+    <iron-localstorage name="polymer-card"
+                       on-iron-localstorage-load="_backupLoaded"
+                       value="{{backupCards}}">
+    </iron-localstorage>
+
+
+  </template>
+  <script>
+    Polymer({
+
+      is: 'card-data',
+
+      properties: {
+
+        cards: {
+          notify: true
+        },
+
+        _firebaseConnected: {
+          value: false
+        }
+
+      },
+
+      _firebaseLoaded: function() {
+        this._firebaseConnected = true;
+        this.cards = this.fbCards;
+        this.backupCards = this.fbCards;
+        this.linkPaths('fbCards', 'cards');
+        this.linkPaths('backupCards', 'cards');
+      },
+
+      _backupLoaded: function() {
+        if (!this._firebaseConnected) {
+          this.cards = this.backupCards.slice();
+        }
+      }
+
+    });
+
+  </script>
+</dom-module>

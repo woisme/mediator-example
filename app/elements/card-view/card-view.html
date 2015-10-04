@@ -8,12 +8,13 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 
 <!-- Add your elements here -->
 <link rel="import" href="../../styles/app-theme.html">
 <link rel="import" href="../card-list/card-list.html">
 <link rel="import" href="../card-input/card-input.html">
-<link rel="import" href="../card-icons/card-icons.html">
 
 
 <dom-module id="card-view">
@@ -111,17 +112,17 @@
         <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
           <!-- Give anchors a tabindex to work around https://github.com/PolymerElements/iron-menu-behavior/issues/19 -->
           <a data-route="all" href="/" tabindex="-1" on-click="closeDrawer">
-            <iron-icon icon="card-icons:assignment"></iron-icon>
+            <iron-icon icon="apps"></iron-icon>
             <span>All Cards</span>
           </a>
 
           <a data-route="favorite" href="/favorite" tabindex="-1" on-click="closeDrawer">
-            <iron-icon icon="card-icons:assignment-late"></iron-icon>
+            <iron-icon icon="favorite-border"></iron-icon>
             <span>Not Favorite</span>
           </a>
 
           <a data-route="notfavorite" href="/notfavorite" tabindex="-1" on-click="closeDrawer">
-            <iron-icon icon="card-icons:assignment-turned-in"></iron-icon>
+            <iron-icon icon="favorite"></iron-icon>
             <span>Favorite</span>
           </a>
         </paper-menu>

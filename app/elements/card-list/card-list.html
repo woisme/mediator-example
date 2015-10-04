@@ -31,7 +31,7 @@
       }
     </style>
 
-    <p class="no-more-msg" hidden="[[_cardsEmpty(cards.length)]]">No more cards! You're all caught up</p>
+    <p class="no-more-msg" hidden="[[_cardsEmpty(cards.length)]]">No more cards! Add Some</p>
 
     <template is="dom-repeat"
               items="{{cards}}"
@@ -73,8 +73,8 @@
             };
           }
 
-          // Handle 'completed', or its inverse, 'active'
-          var ifComplete = (filterBy === 'completed');
+          // Handle 'notfavorite', or its inverse, 'favorite'
+          var ifComplete = (filterBy === 'notfavorite');
           return function(item) {
             return item.isComplete === ifComplete;
           };
